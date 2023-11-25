@@ -40,7 +40,7 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [activeTab, setActiveTab] = useState(null);
   const pathname = usePathname();
-  const hashTagValue = globalThis.window.location.hash;
+  const [hashTagValue, setHashTagValue] = useState('');
 
   useEffect(() => {
     const activeTabFinder = tabs.find(
@@ -50,7 +50,16 @@ const Navbar = () => {
     // console.log(pathname);
   }, [hashTagValue, pathname, tabs]);
 
+  useEffect(() => {
+    setHashTagValue(window.location.hash);
+  }, [])
+
   // console.log(activeTab);
+
+  const imageLoader = ({ src, width, quality }) => {
+    const origin = process.env.HOSTNAME || window.location.origin;
+    return `${origin}${src}?w=${width}&q=${quality || 75}`
+  }
 
   return (
     <>
@@ -87,7 +96,7 @@ const Navbar = () => {
               </div>
               <Link href={"/"} className="logoTitle text-[28px] w-auto h-auto">
                 {/* {props.title} */}
-                <Image src={"/logoT.png"} alt="logo" width={200} height={200} />
+                <Image loader={imageLoader} src={"/logoT.png"} alt="logo" width={0} height={0} sizes="100vw" className="w-full h-auto max-w-[270]" />
               </Link>
               <div className="flex items-center justify-center">
                 <div

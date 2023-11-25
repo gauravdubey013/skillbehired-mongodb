@@ -143,8 +143,8 @@ function LoginForm() {
   };
   return (
     <>
-      <div className="w-full h-[80vh] sm:h-[87vh] md:h-[84vh] flex justify-center items-center animate-fade-in-down">
-        <div className="w-[85%] md:w-[80%] lg:w-[65%] h-[90%] border-[1px] border-solid border-[#53c28b]/90 rounded-2xl shadow-lg flex flex-rol gap-0 p-1 ease-in-out duration-300">
+      <div className="w-full h-[75vh] md:h-[77vh] flex justify-center items-center animate-fade-in-down">
+        <div className="w-[95%] md:w-[80%] lg:w-[65%] h-[90%] border-[1px] border-solid border-[#53c28b]/90 rounded-2xl shadow-lg flex flex-rol ease-in-out duration-300">
           {/* px-[20px] sm:px-[30px] md:px-[45px] lg:px-[80px] */}
           <div className="w-[50%] h-full hidden sm:flex justify-center items-cent rounded-xl ease-in-out duration-300">
             <Image
@@ -153,7 +153,7 @@ function LoginForm() {
               width={400}
               // fill={true}
               height={400}
-              className="contactImg object-contain animate-[moveCon_2s_infinite_ease_alternate]"
+              className="contactImg w-auto h-auto object-contain animate-[moveCon_2s_infinite_ease_alternate]"
             />
           </div>
 
@@ -165,7 +165,7 @@ function LoginForm() {
           <form
             action=""
             onSubmit={handleSubmit}
-            className="fontFam w-full sm:w-[50%] h-full flex flex-col justify-between gap-5 px-5 rounded-xl ease-in-out duration-300"
+            className="fontFam w-full sm:w-[50%] h-full flex flex-col justify-between gap-2 px-5 rounded-xl ease-in-out duration-300"
           >
             <div className="fontFam w-full h-auto text-[40px] md:text-[45px] lg:text-[60px] text-[#53c28b] text-center ease-in-out duration-300">
               Login
@@ -174,21 +174,15 @@ function LoginForm() {
             <div className="w-full h-auto flex gap-4 justify-center items-center">
               <Link
                 href="#"
-                className="w-[3rem] h-[3rem] flex justify-center items-center hover:text-blue- text-2xl no-underline border-[1px] rounded-full hover:border-[#53c28b] ease-in-out duration-300 shadow-md"
+                className="w-[3rem] h-[3rem] active:scale-75 flex justify-center items-center hover:text-blue- text-2xl no-underline border-[1px] rounded-full hover:border-[#53c28b] ease-in-out duration-300 shadow-md"
               >
                 <i className="fa fa-github hover:scale-110" />
               </Link>
               <Link
                 href="#"
-                className="w-[3rem] h-[3rem] flex justify-center items-center hover:text-red-500 text-2xl no-underline border-[1px] rounded-full hover:border-[#53c28b] ease-in-out duration-300 shadow-md"
+                className="w-[3rem] h-[3rem] active:scale-75 flex justify-center items-center hover:text-red-500 text-2xl no-underline border-[1px] rounded-full hover:border-[#53c28b] ease-in-out duration-300 shadow-md"
               >
                 <i className="fa fa-google-plus hover:scale-110" />
-              </Link>
-              <Link
-                href="#"
-                className="w-[3rem] h-[3rem] flex justify-center items-center hover:text-blue-400 text-2xl no-underline border-[1px] rounded-full hover:border-[#53c28b] ease-in-out duration-300 shadow-md"
-              >
-                <i className="fa fa-linkedin hover:scale-110" />
               </Link>
             </div>
 

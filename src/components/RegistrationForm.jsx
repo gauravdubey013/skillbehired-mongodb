@@ -1,3 +1,9 @@
+// const firstname = e.target[0].value;
+//     const lastname = e.target[1].value;
+//     const email = e.target[2].value;
+//     const password = e.target[3].value;
+//     const confirmpassword = e.target[4].value;
+
 "use client";
 
 import Image from "next/image";
@@ -6,18 +12,30 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const RegistrationForm = () => {
-  const [profChecked, setprofChecked] = useState(false);
+  const [profChecked, setProfChecked] = useState(false);
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [error, setError] = useState("");
+
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const firstname = e.target[0].value;
-    const lastname = e.target[1].value;
-    const email = e.target[2].value;
-    const password = e.target[3].value;
-    // const confirmpassword = e.target[4].value;
+    console.log("firstname: ", firstname, "lastname: ",lastname, "email: ", email, "password: ", password, "confirmPassword: ", confirmPassword);
 
-    // console.log(firstname, lastname, email, password, confirmpassword);
+    confirmPassword !== password
+      ? setError("Mismatch password!")
+      : setError("");
+
+    // if (password == confirmPassword) {
+    //   profChecked
+    //     ? router.push("/signUp/professionalSignUp")
+    //     : router.push("/signIn");
+    // }
 
     try {
       const res = await fetch("/api/register", {
@@ -27,15 +45,21 @@ const RegistrationForm = () => {
           firstname,
           lastname,
           email,
-          password,
+          password
         }),
       });
+      
       if (res.status === 400) {
         setError("User already exists!");
       }
       if (res.status === 200) {
         setError("");
-        router.push("/signIn");
+        // router.push("/signIn");
+        if (password == confirmPassword) {
+          profChecked
+            ? router.push("/signUp/professionalSignUp")
+            : router.push("/signIn");
+        }
       }
     } catch (error) {
       setError(error);
@@ -45,14 +69,13 @@ const RegistrationForm = () => {
 
   return (
     <>
-      <div className="w-full h-[80vh] sm:h-[87vh] md:h-[84vh] flex justify-center items-center animate-fade-in-down">
-        <div className="w-[85%] md:w-[85%] xl:w-[75%] h-[90%] border-[1px] border-solid border-[#53c28b]/90 rounded-2xl shadow-lg flex flex-rol gap-0 p-1 ease-in-out duration-300">
+      <div className="w-full h-[80vh] md:h-[77vh] flex justify-center items-center animate-fade-in-down">
+        <div className="w-[95%] md:w-[85%] xl:w-[75%] h-[90%] border-[1px] border-solid border-[#53c28b]/90 rounded-2xl shadow-lg flex flex-rol ease-in-out duration-300">
           <div className="w-[50%] h-full hidden sm:flex justify-center items-cent rounded-xl ease-in-out duration-300">
             <Image
               src="/authImg.png"
               alt="authImg"
               width={400}
-              // fill={true}
               height={400}
               className="contactImg w-auto h-auto object-contain animate-[moveCon_2s_infinite_ease_alternate]"
             />
@@ -65,13 +88,13 @@ const RegistrationForm = () => {
               <div className="w-full h-auto flex gap-4 justify-center items-center">
                 <Link
                   href="#"
-                  className="w-[3rem] h-[3rem] flex justify-center items-center text-2xl no-underline border-[1px] rounded-full hover:border-[#53c28b] ease-in-out duration-300 shadow-md"
+                  className="w-[3rem] h-[3rem] active:scale-75 flex justify-center items-center text-2xl no-underline border-[1px] rounded-full hover:border-[#53c28b] ease-in-out duration-300 shadow-md"
                 >
                   <i className="fa fa-github hover:scale-110" />
                 </Link>
                 <Link
                   href="#"
-                  className="w-[3rem] h-[3rem] flex justify-center items-center hover:text-red-500 text-2xl no-underline border-[1px] rounded-full hover:border-[#53c28b] ease-in-out duration-300 shadow-md"
+                  className="w-[3rem] h-[3rem] active:scale-75 flex justify-center items-center hover:text-red-500 text-2xl no-underline border-[1px] rounded-full hover:border-[#53c28b] ease-in-out duration-300 shadow-md"
                 >
                   <i className="fa fa-google-plus hover:scale-110" />
                 </Link>
@@ -84,45 +107,63 @@ const RegistrationForm = () => {
               </div>
 
               <form
-                action=""
-                method="post"
+                // action=""
+                // method="post"
                 onSubmit={handleSubmit}
                 className="w-full h-full flex flex-col gap-4"
               >
                 <div className="flex gap-2">
                   <input
                     type="text"
+                    name="firstname"
+                    onChange={(e) => setFirstname(e.target.value)}
+                    required
                     placeholder="Enter FirstName"
                     className="allFormInput h-[52px]"
                   />
                   <input
                     type="text"
+                    name="lastname"
+                    onChange={(e) => setLastname(e.target.value)}
+                    required
                     placeholder="Enter LastName"
                     className="allFormInput h-[52px]"
                   />
                 </div>
                 <input
                   type="text"
+                  name="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                   placeholder="Enter E-mail"
                   className="allFormInput h-[52px]"
                 />
                 <input
                   type="password"
+                  name="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                   placeholder="Enter Password"
                   className="allFormInput h-[52px]"
                 />
                 <input
                   type="password"
+                  name="email"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
                   placeholder="Confirm Password"
-                  className="allFormInput h-[52px]"
+                  className={`allFormInput h-[52px]
+                  ${error ? "border-red-500 placeholder:text-red-500" : ""}`}
                 />
+                {error && <span className="text-red-500">{error}</span>}
 
                 {/* Professional form check */}
                 <div className="mt-4 flex items-center gap-2">
                   <input
                     type="checkbox"
                     name="professionalCheckbox"
-                    checked={profChecked}
+                    // checked={profChecked}
+                    onChange={(e) => setProfChecked(!profChecked)}
                     className="w-4 h-4 leading-tight checked:bg-[#53c28b] bg-[#53c28b] rounded hover:ring-1 focus:ring-1 accent-[#53c28b]"
                   />{" "}
                   Would you like to be a professional?
@@ -134,7 +175,6 @@ const RegistrationForm = () => {
                     name="termsAgree"
                     required
                     className="w-4 h-4 leading-tight bg-[#53c28b] rounded hover:ring-1 focus:ring-1 accent-[#53c28b]"
-                    checked
                   />
                   I agree to the terms and conditions!
                 </div>

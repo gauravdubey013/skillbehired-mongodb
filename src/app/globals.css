@@ -97,7 +97,7 @@ html {
 }
 
 .allFormInput {
-  @apply w-full fontFam focus:px-2 rounded-sm bg-transparent text-xl hover:placeholder:text-[#53c28b] focus:placeholder:text-[#53c28b] border-b-[1px] hover:border-[#53c28b] focus:border-[#53c28b] hover:shadow-md focus:shadow-md outline-none ease-in-out duration-300;
+  @apply w-full fontFam focus:px-2 rounded-sm bg-transparent text-base md:text-xl placeholder:text-base md:placeholder:text-xl hover:placeholder:text-[#53c28b] focus:placeholder:text-[#53c28b] border-b-[1px] hover:border-[#53c28b] focus:border-[#53c28b] hover:shadow-md focus:shadow-md outline-none ease-in-out duration-300;
 }
 .numHide::-webkit-inner-spin-button,
 .numHide::-webkit-outer-spin-button {
@@ -112,7 +112,7 @@ html {
 }
 
 .allBtn {
-  @apply fontFam md:w-[7.75rem] font-extrabold cursor-pointer backdrop-filter backdrop-blur-sm bg-[#53c28b] hover:bg-[#53c28b]/[0.6] scale-95 hover:scale-100 shadow-sm flex justify-center items-center hover:shadow-md focus:shadow-md ease-in-out duration-200;
+  @apply fontFam md:w-[7.75rem] active:text-lg active:scale-90 font-extrabold cursor-pointer backdrop-filter backdrop-blur-sm bg-[#53c28b] hover:bg-[#53c28b]/[0.6] scale-95 hover:scale-100 shadow-sm flex justify-center items-center hover:shadow-md focus:shadow-md ease-[ease] duration-200;
 }
 
 .scrollDiv::-webkit-scrollbar {

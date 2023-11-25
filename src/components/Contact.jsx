@@ -12,10 +12,11 @@ const Contact = () => {
                         <Image
                             src="/contact.png"
                             alt="contactImg"
+                            // fill={true}
+                            layout='fill'
                             // width={500}
-                            fill={true}
                             // height={500}
-                            className="contactImg object-contain animate-[moveCon_3s_infinite_ease_alternate]"
+                            className="contactImg w-auto h-auto absolute object-contain animate-[moveCon_3s_infinite_ease_alternate]"
                         />
                     </div>
                 </div>
